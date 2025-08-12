@@ -1,0 +1,29 @@
+{
+    "name": "defaultcompany.dialog-system",
+    "references": [
+        "Unity.Localization",
+        "Unity.Timeline",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.timeline",
+            "expression": "",
+            "define": "UNITY_TIMELINE"
+        },
+        {
+            "name": "com.unity.localization",
+            "expression": "",
+            "define": "UNITY_LOCALIZATION"
+        }
+    ],
+    "noEngineReferences": false
+}
