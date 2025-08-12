@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "displayName": "Node Based Dialog System",
     "description": "This is an example package",
-    "unity": "6000.1.6",
-    "unityRelease": "f1",
+    "unity": "6000.1",
+    "unityRelease": "6f1",
     "keywords": [
         "dialog"
     ],
