@@ -11,6 +11,14 @@ using UnityEngine.Localization.Settings;
 
 namespace cherrydev
 {
+    public enum InputState
+    {
+        UP,
+        PRESSED,
+        DOWN,
+        RELEASED
+    }
+
     public class DialogBehaviour : MonoBehaviour
     {
         [SerializeField] private float _dialogCharDelay;
@@ -28,6 +36,7 @@ namespace cherrydev
         private Node _currentNode;
         private DialogVariablesHandler _variablesHandler;
         private InputAction _nextSentenceAction;
+        private InputState _nextSentenceActionState;
 
         public AnswerNode CurrentAnswerNode { get; private set; }
         public SentenceNode CurrentSentenceNode { get; private set; }
@@ -660,6 +669,38 @@ namespace cherrydev
             if (!_isDialogStarted || !_isCanSkippingText)
                 return;
 
+            bool isPressed = _nextSentenceAction.IsPressed();
+            if (isPressed)
+            {
+                switch (_nextSentenceActionState)
+                {
+                    case InputState.UP:
+                    case InputState.RELEASED:
+                        _nextSentenceActionState = InputState.PRESSED;
+                        break;
+                    case InputState.PRESSED:
+                        _nextSentenceActionState = InputState.DOWN;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (_nextSentenceActionState)
+                {
+                    case InputState.RELEASED:
+                        _nextSentenceActionState = InputState.UP;
+                        break;
+                    case InputState.PRESSED:
+                    case InputState.DOWN:
+                        _nextSentenceActionState = InputState.RELEASED;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             if (CheckNextSentenceKeyCodes() && !_isCurrentSentenceSkipped)
                 _isCurrentSentenceSkipped = true;
         }
@@ -670,7 +711,7 @@ namespace cherrydev
         /// <returns></returns>
         private bool CheckNextSentenceKeyCodes()
         {
-            if (_nextSentenceAction.IsPressed())
+            if (_nextSentenceActionState == InputState.PRESSED)
                 return true;
 
             return false;
