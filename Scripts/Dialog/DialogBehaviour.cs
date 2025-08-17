@@ -280,6 +280,27 @@ namespace cherrydev
             _onDialogFinished.AddListener(action);
 
         /// <summary>
+        /// Adding listener to OnDialogStarted UnityEvent
+        /// </summary>
+        /// <param name="action"></param>
+        public void AddListenerToDialogStartedEvent(UnityAction action) =>
+            _onDialogStarted.AddListener(action);
+
+        /// <summary>
+        /// Remove listener from OnDialogFinished UnityEvent
+        /// </summary>
+        /// <param name="action"></param>
+        public void RemoveListenerFromDialogFinishedEvent(UnityAction action) =>
+            _onDialogFinished.RemoveListener(action);
+
+        /// <summary>
+        /// Remove listener from OnDialogStarted UnityEvent
+        /// </summary>
+        /// <param name="action"></param>
+        public void RemoveListenerFromDialogStartedEvent(UnityAction action) =>
+            _onDialogStarted.RemoveListener(action);
+
+        /// <summary>
         /// Setting currentNode field to Node and call HandleDialogGraphCurrentNode method
         /// </summary>
         /// <param name="node"></param>
